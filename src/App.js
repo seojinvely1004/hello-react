@@ -17,6 +17,7 @@ function App() {
         >
           Learn React
         </a>
+<h1>내가추가합니다</h1>
       </header>
     </div>
   );
