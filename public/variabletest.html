@@ -1,0 +1,42 @@
+<html>
+    <!--http://localhost:3000/variabletest.html-->
+<head>
+    <script>
+        //ecmascript 5버전까지
+        var arr = [1, "이", true];
+        var a1 = arr[0];
+        var b1 = arr[1];
+        var c1 = arr[2];
+        console.log( a1 + ":" + b1 + ":" + c1);
+
+        //escmascript 6 이후 
+        const [a2, b2, c2] = arr;
+        console.log( a2 + ":" + b2 + ":" + c2);
+
+        //ecmascript 5버전까지
+        var obj = {a:1, b:"이", c:true};
+        /*var a = obj.a;
+        var b = obj.b;
+        var c = obj.c;
+        console.log( a + ":" + b + ":" + c);*/
+
+        //escmascript 6 이후 . 객체접근
+        const {a, b, c} = obj;
+        console.log( a + " : " + b + " : " + c);
+
+        //배열 복사 spread연산자
+        var arr1 = [1,2,3,4,5];
+        var newarr1 = [...arr1];//스프레드 연산자로 배열 복사하는 방법.
+        newarr1[0] = 100;
+        console.log(arr1 + " : " + newarr1 + "==>비교" )
+
+        //객체 복사 spread연산자
+        var obj1 = {seq : 1, title : "제목", contents : "내용"}
+        var newobj1 = {...obj1};//객체를 복사하는 방법.
+        newobj1.seq = 2;
+        console.log(obj1.seq + " : " + newobj1.seq + "===>비교")
+    </script>
+</head>
+<body>
+</body>
+</html>
