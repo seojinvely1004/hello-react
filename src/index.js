@@ -1,16 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-
 import reportWebVitals from './reportWebVitals';
 
-import LoginForm from './LoginForm';
+import Loop, { TotalUserInform } from './Loop';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-   <LoginForm />
+   <TotalUserInform />
   </React.StrictMode>
 );
 
