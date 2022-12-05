@@ -28,12 +28,18 @@ class Book extends React.Component{
     //this.props.title / this.props.body / this.props.price
     
     render(){//render라는 함수 내부
-       
-        
-        return (<div>
-            <BookHeading title={this.props.title} />
-            <BookBody price={this.props.price*2} body={this.props.body} />
-            </div>);
+        //1. props 그대로 사용
+    //     return (<div>
+    //         <BookHeading title={this.props.title} />
+    //         <BookBody price={this.props.price*2} body={this.props.body} />
+    //         </div>);
+    //2. 비구조화 할당 사용
+    const {title, body, price } = this.props;
+    return(){
+        <div>    
+        <BookHeading title = {title} />
+        <BookBody price = {price*2} body = {body} />
+        </div>
     }
 }
 export default Book;
