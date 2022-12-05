@@ -1,23 +1,39 @@
 import React from "react";
-
-
-
-class Book extends React.Component{    
+class BookHeading extends React.Component {
     
-    constructor(props){ //생성자내부
-        super(props);
-        this.title = "제목 = "+props.title;
+    render(){
+        return (<h1>제목 = {this.props.title}</h1>)
     }
+
+}
+class BookBody extends React.Component {
+    constructor(props){
+        super(props);
+        this.body = "내용 = " + this.props.body;
+        this.price = "가격 = " +this.props.price + "원";
+    }
+    render(){
+        return (
+            <div>
+                <hr/>
+                <h2>{this.body}</h2>
+                <h2>{this.price}</h2>
+                <hr/>
+            </div>
+        );
+    }
+
+}
+class Book extends React.Component{    
+    //this.props.title / this.props.body / this.props.price
+    
     render(){//render라는 함수 내부
-        const body = "내용 = "+this.props.body;
-        const price = "가격 = "+this.props.price + "원";
+       
         
         return (<div>
-            <h1>{this.title}</h1>
-            <h1>{body}</h1>
-            <h1>{price}</h1>
+            <BookHeading title={this.props.title} />
+            <BookBody price={this.props.price*2} body={this.props.body} />
             </div>);
-
     }
 }
 export default Book;
