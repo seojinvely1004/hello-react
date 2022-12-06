@@ -4,12 +4,12 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 
 import Loop, { TotalUserInform } from './Loop2';
-
+import BoardList from './BoardList';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-   <TotalUserInform />
+   <BoardList />
   </React.StrictMode>
 );
 

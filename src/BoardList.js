@@ -10,17 +10,23 @@ class BoardHeading extends React.Component{
             };
     }
 class Board extends React.Component{
+    //state = {seq: ''}
     render() {               
         const deleteHandler = (e) =>{
             //삭제버튼 클릭한 게시물을 게시물 리스트에서 삭제 - 화면 렌더링
             this.props.deleteBoard(e.target.id); //deleteBoard있으면 삭제할id를주겠다.
             //배열에서 몇번째 게시물을 삭제하는지 
         }
-
+        const updateHandler =(e)=>{
+            const obj = 
+                {seq : e.target.id , title : '수정한 제목', writer : '수정한 작성자', viewcount : 0}; //현재 타겟의 아이디로 
+            this.props.updateBoard(obj);
+        }
         const board_tr = this.props.body.map(function(oneboard, index) {
             return (<tr key={index}><td>{oneboard.seq}</td><td>{oneboard.title}</td>
             <td>{oneboard.writer}</td><td>{++oneboard.viewcount}</td>
-            <td><button id={index} onClick={deleteHandler}>삭제</button></td><td><button>수정</button></td></tr>);
+            <td><button id={index} onClick={deleteHandler}>삭제</button></td>
+            <td><button id={oneboard.seq} onClick={updateHandler}>수정</button></td></tr>);
         });    
 
         return(
@@ -80,20 +86,28 @@ class BoardList extends React.Component{
             this.state.boardList.push(newBoard);//2.
             this.setState({boardList : this.state.boardList});//3.
         }
-
         //Board의 this.props.deleteBoard(e.target.id); 
         const deleteBoard = (index)=>{
             //추가 : push, 반복 : map, 삭제 : filter, splice,,
             this.state.boardList.splice(index, 1);//배열갯수변화
             this.setState({boardList : this.state.boardList});//렌더링되도록 변경된 값 알려주기
-
         }
-
+        const updateBoard = (updateBoard)=>{
+            this.setState({boardList :this.state.boardList.map(function(oneBoard){
+                return updateBoard.seq == oneBoard.seq? updateBoard : oneBoard
+            })}); 
+        }
+        //update 생각해야할 것.배열에서 반복하면서 수정게시물seq와 배열 내부 5개 게시물들의 seq값을 비교
+        //수정클릭게시물seq과 일치하는 게시물을 찾았다.
+        //찾은 게시물을 수정입력게시물내용으로 변경한다. 
+        // Board에전달 (state에 알려준다)
     return (
         <div>
             <table border="3">
                 <BoardHeading />
-                <Board body = {this.state.boardList} deleteBoard = {deleteBoard}/>
+                <Board body = {this.state.boardList}
+                deleteBoard = {deleteBoard}
+                updateBoard = {updateBoard}/>
             </table>
             <br/><br/>
             <BoardInsertForm size = {this.state.boardList.length}addBoard={addBoard}/>
